@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contas a Pagar - Finance App</title>
+
+    <!--** CDN Referências **-->
+    <%- include(process.cwd() + '/views/Partials/Cdn.ejs') %>
+</head>
+<body>
+    <div class="container-fluid container">
+        <h3 class="text-center my-4">Contabilidade</h3>
+
+        <!--** CARDS **-->
+        <div class=" d-flex justify-content-around mb-4">
+            <div class=" p-2 shadow-sm" style="background:linear-gradient(28deg, rgba(219, 0, 0,0.842) 28%, rgba(255, 82, 82,0.842) 100%);border-radius: 10px;width: 280px;">
+                <div class="card-content" >
+                    <div class="card-body">
+                        <div class="media d-flex" style="color:white;">
+                            <div class="align-self-center ">
+                                <p class="h2 mr-4" >
+                                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                                </p>
+                            </div>
+
+                            <div class="media-body text-right">
+                                <h5>Total a Pagar:</h5>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+
+            <div class=" p-2 shadow-sm" style="background: linear-gradient(28deg, rgba(49, 185, 0, 0.842) 28%, rgba(118, 255, 72,0.842) 100%); border-radius: 10px;width: 280px;"> 
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="media d-flex" style="color:white;">
+                            <div class="align-self-center ">
+                                <p class="h2 mr-4" >
+                                    <i class="fa-solid fa-wallet"></i>
+                                </p>
+                            </div>
+
+                            <div class="media-body text-right">
+                                <h5>Total a Receber:</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" p-2 shadow-sm" style="background: linear-gradient(28deg, rgba(0,28,207,0.842) 28%, rgba(110,125,255,0.842) 100%); border-radius: 10px;width: 280px;">
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="media d-flex" style="color: white;">
+                            <div class="align-self-center ">
+                                <p class="h2 mr-4" >
+                                    <i class="fa-solid fa-user-lock"></i>
+                                </p>
+                            </div>
+
+                            <div class="media-body text-right">
+                                <h5>Usuários inativos:</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--** Botões **-->
+        <p>
+            <a href='/Administradores/Create' class="btn btn-primary create" id="novo">
+                <i class="far fa-plus-square"></i> Novo
+            </a>
+            <a href="/Administradores-Relatorio" class="btn btn-secondary" id="report" target="_blank">
+                <i class="fa-solid fa-file-pdf"></i> Relatório
+            </a>
+        </p>
+    
+        <!--** Tabela **-->
+        <table id="tableRec" class="table table-hover table-striped table-bordered table-sm" style="font-size: smaller; white-space: nowrap; width: 100%">  
+            <thead style="background-color:#2d98da;color:white;">
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Tipo
+                    </th>
+                    <th>
+                        Descrição
+                    </th>   
+                    <th>
+                        Banco
+                    </th>  
+                    <th>
+                        Valor
+                    </th>  
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>   
+                    <td>
+                    </td>  
+                    <td>
+                    </td> 
+                    <td class="text-center">
+                        <div class="dropdown">
+                            <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa-solid fa-bars"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody> 
+        </table>
+    </div>
+    <footer class="border-top footer text-muted bg-white">
+        <div class="container text-center bg-white pb-2">
+            &copy; 2021 - FSTransportes
+        </div>
+    </footer>
+
+    <script>
+        //***** Layout da tabela
+        $(function() {
+            $(document).ready(function() {
+                $('#tableRec').DataTable();
+            });
+        });
+    
+        //***** Chamada dos tooltips
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+</body>
+</html>
