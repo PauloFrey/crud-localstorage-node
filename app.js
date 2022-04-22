@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const Routes = require('./config/Routes')
+const contasRoute = require('./controllers/HomeController');
 
 //Configure Routes
-app.use(Routes);
+contasRoute(app);
 
 //Configure Paths
 app.use(bodyParser.urlencoded({ extended: false }));
