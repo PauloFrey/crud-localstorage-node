@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contas a Pagar - Finance App</title>
+    <title>Início - Finance App</title>
 
     <!--** CDN Referências **-->
     <%- include(process.cwd() + '/views/Partials/Cdn.ejs') %>
@@ -27,6 +27,7 @@
 
                             <div class="media-body text-right">
                                 <h5>Total a Pagar:</h5>
+                                <h5>R$</h5>
                             </div>
                         </div> 
                     </div>
@@ -44,7 +45,8 @@
                             </div>
 
                             <div class="media-body text-right">
-                                <h5>Total a Receber:</h5>
+                                <h5>Total Pago:</h5>
+                                <h5>R$</h5>
                             </div>
                         </div>
                     </div>
@@ -57,12 +59,13 @@
                         <div class="media d-flex" style="color: white;">
                             <div class="align-self-center ">
                                 <p class="h2 mr-4" >
-                                    <i class="fa-solid fa-user-lock"></i>
+                                    <i class="fa-solid fa-chart-pie"></i>
                                 </p>
                             </div>
 
                             <div class="media-body text-right">
-                                <h5>Usuários inativos:</h5>
+                                <h5>Diferença:</h5>
+                                <h5>R$</h5>
                             </div>
                         </div>
                     </div>
@@ -72,10 +75,10 @@
 
         <!--** Botões **-->
         <p>
-            <a href='/Administradores/Create' class="btn btn-primary create" id="novo">
-                <i class="far fa-plus-square"></i> Novo
+            <a href='/contas/create' class="btn btn-primary create">
+                <i class="far fa-plus-square"></i> Nova Entrada
             </a>
-            <a href="/Administradores-Relatorio" class="btn btn-secondary" id="report" target="_blank">
+            <a href="" class="btn btn-secondary" id="report" target="_blank">
                 <i class="fa-solid fa-file-pdf"></i> Relatório
             </a>
         </p>
@@ -91,9 +94,6 @@
                         Status
                     </th>
                     <th>
-                        Tipo
-                    </th>
-                    <th>
                         Descrição
                     </th>   
                     <th>
@@ -107,35 +107,63 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>   
-                    <td>
-                    </td>  
-                    <td>
-                    </td> 
-                    <td class="text-center">
-                        <div class="dropdown">
-                            <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa-solid fa-bars"></i>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <%contas.forEach(function(conta){%>
+                    <tr>
+                        <td>
+                            <%= conta.id %>
+                        </td>
+                        <td class="text-center" >
+                            <% if(conta.status === 'P'){%>
+                                <i class="fa-solid fa-circle-check text-success h6" id="btn_hab" data-toggle="tooltip" title="Pago" style="cursor: pointer;"></i>
+                            <%}else{%>
+                                <i class="fa-solid fa-circle-xmark text-danger h6" id="btn_hab" data-toggle="tooltip" title="A Pagar" style="cursor: pointer;"></i>
+                            <%}%>
+                        </td>
+                        <td>
+                            <%= conta.descricao %>
+                        </td>
+                        <td>
+                            <%= conta.banco %>
+                        </td>   
+                        <td>
+                            <%= conta.valor %>
+                        </td>  
+                        <td class="text-center">
+                            <div class="dropdown">
+                                <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa-solid fa-bars"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <% if(conta.status === 'A'){%>
+                                        <a href="" class="text-dark h6 edit dropdown-item">
+                                            <i class="fa-solid fa-circle-check"></i> Pagar
+                                        </a>
+
+                                        <div class="dropdown-divider"></div>
+                                    <%}else{%><%}%>
+
+
+                                    <a href="/contas/edit/<%= conta.id %>" class="text-dark h6 edit dropdown-item">
+                                        <i class="far fa-edit"></i> Editar
+                                    </a>
+
+                                    <div class="dropdown-divider"></div>
+
+                                    <a href="" class="text-dark h6 delete dropdown-item">
+                                        <i class="far fa-trash-alt"></i> Deletar
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                <%})%>
             </tbody> 
         </table>
     </div>
+    
     <footer class="border-top footer text-muted bg-white">
         <div class="container text-center bg-white pb-2">
-            &copy; 2021 - FSTransportes
+            &copy; 2022 - Paulo Queiroz
         </div>
     </footer>
 
