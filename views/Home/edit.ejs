@@ -15,35 +15,42 @@
         
         <div class="row d-flex justify-content-center">
             <div class="col-md-8 offset-md-3">
-                <form  method="POST" action="/contas/edit/<%= conta.id %>">
+                <form  method="PUT" action="/contas/edit/<%= conta[0].id %>">
                     <div class="row mb-2">
                         <div class="form-group col-sm-8">
                             <label for="id" class="control-label">ID</label>
-                            <input id="id" class="form-control" name="id" value="<%= conta.id %>" required/>
+                            <input id="id" class="form-control" name="id" value="<%= conta[0].id %>" required/>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="form-group col-sm-4">
                             <label for="descricao" class="control-label">Descrição</label>
-                            <input id="descricao" class="form-control" name="descricao" value="<%= conta.descricao %>" required/>
+                            <input id="descricao" class="form-control" name="descricao" value="<%= conta[0].descricao %>" required/>
                         </div>
                         <div class="form-group col-sm-4">
                             <label for="status" class="">Status</label>
-                            <select id="status" class="form-control" name="status" type="checkbox">
-                                <option value='A'>A Pagar</option>
-                                <option value='P'>Pago</option>
-                            </select>
+                            <%if(conta[0].status === 'A'){%>
+                                <select id="status" class="form-control" name="status" type="checkbox">
+                                    <option value='A'>A Pagar</option>
+                                    <option value='P'>Pago</option>
+                                </select>
+                            <%}else{%>
+                                <select id="status" class="form-control" name="status" type="checkbox">
+                                    <option value='A'>A Pagar</option>
+                                    <option value='P' selected>Pago</option>
+                                </select>
+                            <%}%>
                         </div>
                     </div>
 
                     <div class="row mb-2">  
                         <div class="form-group col-sm-4">
                             <label for="banco" class="control-label">Banco</label>
-                            <input id="banco" class="form-control" name="banco" required/>
+                            <input id="banco" class="form-control" name="banco" value="<%= conta[0].banco %>" required/>
                         </div>
                         <div class="form-group col-sm-4">
                             <label for="valor" class="control-label">Valor</label>
-                            <input id="valor" class="form-control" name="valor"/>
+                            <input id="valor" class="form-control" value="<%= conta[0].valor %>" name="valor"/>
                         </div>
                     </div>
     

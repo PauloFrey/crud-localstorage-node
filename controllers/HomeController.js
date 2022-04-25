@@ -16,7 +16,6 @@ const getContas = () => {
             return []
         }
 }
-
 const saveConta = (contas) => {
     let data = JSON.stringify(contas,null,'\t');
     fs.writeFileSync(filePath,data)
@@ -48,18 +47,16 @@ router.post('/contas/create',async(req,res) => {
 router.get('/contas/edit/:id',(req,res) => {
     const contas = getContas();
 
-    var teste = contas.map(contas => {
+    var conta = contas.filter(contas => {
         if(contas.id === req.params.id){
             return{
-                ...contas,
-                ...req.body
+                ...contas
             }
         }
     });
 
-    console.log(teste)
     res.render('Home/edit',{
-        conta: contas
+        conta: conta
     })
 })
 //EDIT put
@@ -74,8 +71,18 @@ router.put('/contas/edit/:id',async(req,res) => {
             }
         }
     }));
+    console.log(req.body)
 
     res.redirect('/contas')
+})
+
+//DELETE Delete
+router.delete('/contas/delete/:id',async(req,res) => {
+    const contas = getContas();
+
+    saveConta(contas.filter(contas => contas.id !== req.params.id))
+
+    res.status(200).send('Delete');
 })
 
 module.exports = router;
