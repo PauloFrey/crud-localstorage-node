@@ -2,6 +2,7 @@ const router = require('express').Router();
 const fs = require('fs');
 const {join} = require('path');
 var ejs = require('ejs');
+const localStorage = require('localStorage');
 
 const filePath = join(process.cwd(),'/src/Contas.json');
 
@@ -24,8 +25,22 @@ const saveConta = (contas) => {
 //INDEX
 router.get('/contas',async(req,res) =>{ 
     const contas = await getContas()
+    let entrada = 0;
+    let saida = 0;
+    let diferenca = 0;
+    for(var i = 0; i < contas.length; i++){
+        if(contas[i].status == 'E'){
+            entrada += parseInt(contas[i].valor);
+        }else{
+            saida += parseInt(contas[i].valor);
+        }
+        diferenca = parseInt(entrada - saida);
+    }
     res.render('Home/index',{
-        contas: contas
+        contas: contas,
+        entrada: entrada,
+        saida: saida,
+        diferenca: diferenca
     })
 })
 
@@ -54,13 +69,13 @@ router.get('/contas/edit/:id',(req,res) => {
             }
         }
     });
-
+    console.log(conta[0].id)
     res.render('Home/edit',{
         conta: conta
     })
 })
 //EDIT put
-router.put('/contas/edit/:id',async(req,res) => {
+router.post('/contas/edit/:id',async(req,res) => {
     const contas = getContas();
 
     saveConta(contas.map(contas =>{
@@ -72,7 +87,6 @@ router.put('/contas/edit/:id',async(req,res) => {
         }
     }));
     console.log(req.body)
-
     res.redirect('/contas')
 })
 

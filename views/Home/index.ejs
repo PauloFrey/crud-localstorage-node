@@ -26,8 +26,8 @@
                             </div>
 
                             <div class="media-body text-right">
-                                <h5>Total a Pagar:</h5>
-                                <h5>R$</h5>
+                                <h5>Saída:</h5>
+                                <h5>R$ <%= saida %></h5>
                             </div>
                         </div> 
                     </div>
@@ -45,8 +45,8 @@
                             </div>
 
                             <div class="media-body text-right">
-                                <h5>Total Pago:</h5>
-                                <h5>R$</h5>
+                                <h5>Entrada:</h5>
+                                <h5>R$ <%= entrada %></h5>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
 
                             <div class="media-body text-right">
                                 <h5>Diferença:</h5>
-                                <h5>R$</h5>
+                                <h5>R$ <%= diferenca %></h5>
                             </div>
                         </div>
                     </div>
@@ -113,10 +113,10 @@
                             <%= conta.id %>
                         </td>
                         <td class="text-center" >
-                            <% if(conta.status === 'P'){%>
-                                <i class="fa-solid fa-circle-check text-success h6" id="btn_hab" data-toggle="tooltip" title="Pago" style="cursor: pointer;"></i>
+                            <% if(conta.status === 'E'){%>
+                                <i class="fa-solid fa-circle-check text-success h6" id="btn_hab" data-toggle="tooltip" title="Entrada" style="cursor: pointer;"></i>
                             <%}else{%>
-                                <i class="fa-solid fa-circle-xmark text-danger h6" id="btn_hab" data-toggle="tooltip" title="A Pagar" style="cursor: pointer;"></i>
+                                <i class="fa-solid fa-circle-xmark text-danger h6" id="btn_hab" data-toggle="tooltip" title="Saída" style="cursor: pointer;"></i>
                             <%}%>
                         </td>
                         <td>
@@ -134,20 +134,12 @@
                                     <i class="fa-solid fa-bars"></i>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <% if(conta.status === 'A'){%>
-                                        <a href="" class="text-dark h6 edit dropdown-item">
-                                            <i class="fa-solid fa-circle-check"></i> Pagar
-                                        </a>
-
-                                        <div class="dropdown-divider"></div>
-                                    <%}else{%><%}%>
-
-
                                     <a href="/contas/edit/<%= conta.id %>" class="text-dark h6 edit dropdown-item">
                                         <i class="far fa-edit"></i> Editar
                                     </a>
 
                                     <div class="dropdown-divider"></div>
+                                    
                                     <a href="/contas/delete/<%= conta.id %>" class="text-dark h6 delete dropdown-item">
                                         <i class="far fa-trash-alt"></i> Deletar
                                     </a>
