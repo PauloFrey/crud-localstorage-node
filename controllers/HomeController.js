@@ -7,24 +7,18 @@ const localStorage = require('localStorage');
 const filePath = join(process.cwd(),'/src/Contas.json');
 
 const getContas = () => {
-    const data = fs.existsSync(filePath)
-        ? fs.readFileSync(filePath)
-        : []
-
-        try {
-            return JSON.parse(data )
-        } catch (error) {
-            return []
-        }
+    try {
+        return JSON.parse(localStorage.getItem('contas')) ?? []
+        
+    } catch (error) {
+        return []
+    }
 }
-const saveConta = (contas) => {
-    let data = JSON.stringify(contas,null,'\t');
-    fs.writeFileSync(filePath,data)
-}
+const saveConta = (contas) => localStorage.setItem('contas', JSON.stringify(contas, null, '\t'))
 
 //INDEX
-router.get('/contas',async(req,res) =>{ 
-    const contas = await getContas()
+router.get('/contas',(req,res) =>{ 
+    const contas = getContas()
     let entrada = 0;
     let saida = 0;
     let diferenca = 0;
@@ -36,6 +30,7 @@ router.get('/contas',async(req,res) =>{
         }
         diferenca = parseInt(entrada - saida);
     }
+    console.log(contas)
     res.render('Home/index',{
         contas: contas,
         entrada: entrada,
@@ -51,8 +46,8 @@ router.get('/contas/create',(req,res) => {
 //CREATE post
 router.post('/contas/create',async(req,res) => {
     const contas = getContas();
-
     contas.push(req.body);
+
     saveConta(contas);
 
     res.redirect('/contas')
@@ -69,7 +64,6 @@ router.get('/contas/edit/:id',(req,res) => {
             }
         }
     });
-    console.log(conta[0].id)
     res.render('Home/edit',{
         conta: conta
     })
@@ -86,7 +80,7 @@ router.post('/contas/edit/:id',async(req,res) => {
             }
         }
     }));
-    console.log(req.body)
+
     res.redirect('/contas')
 })
 
