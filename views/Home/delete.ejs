@@ -10,11 +10,12 @@
     <%- include(process.cwd() + '/views/Partials/Cdn.ejs') %>
 </head>
 <body  style="background-color: rgb(194, 194, 194);">
-    <div class="container-fluid container mt-4 p-4 bg-white rounded w-50" style="position: relative; top: 50%; transform: translateY(50%);">
-        <h1 class="text-center">Entrada: <%= conta[0].descricao %></h1>
-        
+    <div class="container-fluid container mt-4 p-4 bg-white rounded w-50 shadow" style="position: relative; top: 50%; transform: translateY(50%);">
+        <h1 class="text-center">Entrada: </h1>
+        <h3 class="text-center text-secondary"><%= conta[0].descricao %></h3>
+        <hr>
         <div class="text-center">
-            <div class="">
+            <div>
                 <form  method="POST" action="/contas/delete/<%= conta[0].id %>">
                     <p>Deseja realmente deletar esta entrada?</p>
 
