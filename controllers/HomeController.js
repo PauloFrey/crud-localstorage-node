@@ -5,6 +5,7 @@ var ejs = require('ejs');
 const localStorage = require('localStorage');
 
 const filePath = join(process.cwd(),'/src/Contas.json');
+
 const getContas = () => {
     try {
         return JSON.parse(localStorage.getItem('contas')) ?? []
@@ -38,7 +39,7 @@ router.get('/contas',(req,res) =>{
     })
 })
 
-//CREATE get
+//CREATE
 router.get('/contas/create',(req,res) =>{
     const contas = getContas();
     let id = getContas().length + 1;
@@ -56,7 +57,7 @@ router.post('/contas/create',async(req,res) => {
     res.redirect('/contas')
 })
 
-//EDIT get
+//EDIT
 router.get('/contas/edit/:id',(req,res) => {
     const contas = getContas();
 
@@ -83,7 +84,7 @@ router.post('/contas/edit/:id',async(req,res) => {
 })
 
 
-//ROTA Delete
+//DELETE
 router.get('/contas/delete/:id',(req,res) => {
     const contas = getContas();
 
