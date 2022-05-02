@@ -9,17 +9,17 @@
     <!--** CDN Referências **-->
     <%- include(process.cwd() + '/views/Partials/Cdn.ejs') %>
 </head>
-<body>
-    <div class="container-fluid container">
-        <h1 class="text-center">Editar Entrada</h1>
+<body style="background-color: rgb(194, 194, 194);">
+    <div class="container-fluid container bg-white rounded w-50" style="position: relative; top: 50%; transform: translateY(20%);">
+        <h1 class="text-center pt-2">Editar Entrada</h1>
         
         <div class="row d-flex justify-content-center">
-            <div class="col-md-8 offset-md-3">
+            <div class="col-md-12 offset-md-4">
                 <form  method="POST" action="/contas/edit/<%= conta[0].id %>">
                     <div class="row mb-2">
                         <div class="form-group col-sm-8">
                             <label for="id" class="control-label">ID</label>
-                            <input id="id" class="form-control" name="id" value="<%= conta[0].id %>" required/>
+                            <input id="id" class="form-control" name="id" value="<%= conta[0].id %>" readonly/>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -63,13 +63,6 @@
         </div>
     </div>
     
-    <!--** Rodapé **-->
-    <footer class="border-top footer text-muted bg-white">
-        <div class="container text-center bg-white pb-2">
-            &copy; 2022 - Paulo Queiroz
-        </div>
-    </footer>
-
     <!--** Scripts **-->
     <script>
         //***** Chamada dos tooltips

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Entrada - Finance App</title>
+    
+    <!--** CDN Referências **-->
+    <%- include(process.cwd() + '/views/Partials/Cdn.ejs') %>
+</head>
+<body  style="background-color: rgb(194, 194, 194);">
+    <div class="container-fluid container mt-4 p-4 bg-white rounded w-50" style="position: relative; top: 50%; transform: translateY(50%);">
+        <h1 class="text-center">Entrada: <%= conta[0].descricao %></h1>
+        
+        <div class="text-center">
+            <div class="">
+                <form  method="POST" action="/contas/delete/<%= conta[0].id %>">
+                    <p>Deseja realmente deletar esta entrada?</p>
+
+                    <div class="form-group">
+                        <input type="submit" value="Deletar" class="btn btn-danger" />
+                        <a href='/contas' class="btn btn-secondary">Voltar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+    <!--** Scripts **-->
+    <script>
+        //***** Chamada dos tooltips
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+</body>
+</html>

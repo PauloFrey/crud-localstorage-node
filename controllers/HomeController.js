@@ -82,7 +82,23 @@ router.post('/contas/edit/:id',async(req,res) => {
     res.redirect('/contas')
 })
 
-//DELETE Delete
+
+//ROTA Delete
+router.get('/contas/delete/:id',(req,res) => {
+    const contas = getContas();
+
+    var conta = contas.filter(contas => {
+        if(contas.id === req.params.id){
+            return{
+                ...contas
+            }
+        }
+    });
+
+    res.render('Home/delete',{
+        conta: conta
+    })
+})
 router.post('/contas/delete/:id',async(req,res) => {
     const contas = getContas();
 

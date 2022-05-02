@@ -9,12 +9,12 @@
     <!--** CDN Referências **-->
     <%- include(process.cwd() + '/views/Partials/Cdn.ejs') %>
 </head>
-<body>
-    <div class="container-fluid container">
+<body style="background-color: rgb(194, 194, 194);">
+    <div class="container-fluid container p-2 bg-white rounded w-50" style="position: relative; top: 50%; transform: translateY(20%);">
         <h1 class="text-center">Nova Entrada</h1>
         
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-8 offset-md-3">
+        <div class="row d-flex justify-content-center ">
+            <div class="col-md-12 offset-md-4">
                 <form  method="POST" action="/contas/create">
                     <div class="row mb-2">
                         <div class="form-group col-sm-8">
@@ -56,13 +56,6 @@
         </div>
     </div>
     
-    <!--** Rodapé **-->
-    <footer class="border-top footer text-muted bg-white">
-        <div class="container text-center bg-white pb-2">
-            &copy; 2022 - Paulo Queiroz
-        </div>
-    </footer>
-
     <!--** Scripts **-->
     <script>
         //***** Chamada dos tooltips
