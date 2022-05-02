@@ -5,7 +5,6 @@ var ejs = require('ejs');
 const localStorage = require('localStorage');
 
 const filePath = join(process.cwd(),'/src/Contas.json');
-
 const getContas = () => {
     try {
         return JSON.parse(localStorage.getItem('contas')) ?? []
@@ -30,7 +29,7 @@ router.get('/contas',(req,res) =>{
         }
         diferenca = parseInt(entrada - saida);
     }
-    console.log(contas)
+
     res.render('Home/index',{
         contas: contas,
         entrada: entrada,
@@ -40,10 +39,14 @@ router.get('/contas',(req,res) =>{
 })
 
 //CREATE get
-router.get('/contas/create',(req,res) => {
-    res.render('Home/create')
+router.get('/contas/create',(req,res) =>{
+    const contas = getContas();
+    let id = getContas().length + 1;
+
+    res.render('Home/create',{
+        id: id
+    })
 })
-//CREATE post
 router.post('/contas/create',async(req,res) => {
     const contas = getContas();
     contas.push(req.body);
@@ -64,33 +67,28 @@ router.get('/contas/edit/:id',(req,res) => {
             }
         }
     });
+
     res.render('Home/edit',{
         conta: conta
     })
 })
-//EDIT put
 router.post('/contas/edit/:id',async(req,res) => {
-    const contas = getContas();
+    const conta = JSON.parse(localStorage.getItem('contas')).filter(item => item.id != req.params.id)
 
-    saveConta(contas.map(contas =>{
-        if(contas.id === req.params.id){
-            return{
-                ...contas,
-                ...req.body
-            }
-        }
-    }));
+    conta.push(req.body)
+
+    localStorage.setItem('contas', JSON.stringify(conta));
 
     res.redirect('/contas')
 })
 
 //DELETE Delete
-router.delete('/contas/delete/:id',async(req,res) => {
+router.post('/contas/delete/:id',async(req,res) => {
     const contas = getContas();
 
     saveConta(contas.filter(contas => contas.id !== req.params.id))
 
-    res.status(200).send('Delete');
+    res.redirect('/contas')
 })
 
 module.exports = router;
