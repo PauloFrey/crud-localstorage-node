@@ -14,8 +14,8 @@
         <h1 class="text-center pb-4">Contabilidade</h1>
 
         <!--** CARDS **-->
-        <div class=" d-flex justify-content-around mb-4">
-            <div class=" p-2 shadow-sm" style="background: linear-gradient(90deg, #d31500 0%, #7c0000 100%);border-radius: 10px;width: 280px;">
+        <div class=" d-flex justify-content-center mb-4">
+            <div class=" p-2 shadow-sm mx-4" style="background: linear-gradient(90deg, #d31500 0%, #7c0000 100%);border-radius: 10px;width: 280px;">
                 <div class="card-content" >
                     <div class="card-body">
                         <div class="media d-flex" style="color:white;">
@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            <div class=" p-2 shadow-sm" style="background: linear-gradient(90deg, #9ebd13 0%, #008552 100%); border-radius: 10px;width: 280px;"> 
+            <div class=" p-2 shadow-sm mx-4" style="background: linear-gradient(90deg, #9ebd13 0%, #008552 100%); border-radius: 10px;width: 280px;"> 
                 <div class="card-content">
                     <div class="card-body">
                         <div class="media d-flex" style="color:white;">
@@ -53,33 +53,13 @@
                 </div>
             </div>
 
-            <div class=" p-2 shadow-sm" style="background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); border-radius: 10px;width: 280px;">
-                <div class="card-content">
-                    <div class="card-body">
-                        <div class="media d-flex" style="color: white;">
-                            <div class="align-self-center ">
-                                <p class="h2 mr-4" >
-                                    <i class="fa-solid fa-chart-pie"></i>
-                                </p>
-                            </div>
-
-                            <div class="media-body text-right">
-                                <h5>Diferença:</h5>
-                                <h5>R$ <%= diferenca %></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
 
         <!--** Botões **-->
         <p>
-            <a href='/contas/create' class="btn btn-primary create">
-                <i class="far fa-plus-square"></i> Nova Entrada
-            </a>
-            <a href="" class="btn btn-secondary" id="report" target="_blank">
-                <i class="fa-solid fa-file-pdf"></i> Relatório
+            <a href='/contas/create' class="btn btn-success create">
+                <i class="far fa-plus-square"></i> Nova Conta
             </a>
         </p>
     
